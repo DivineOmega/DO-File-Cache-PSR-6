@@ -1,0 +1,25 @@
+{
+    "name": "rapidwebltd/rw-file-cache-psr-6",
+    "description": "PSR-6 adapter for RW File Cache",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jordan Hall",
+            "email": "jordan.hall@rapidweb.biz"
+        }
+    ],
+    "license": "LGPL3",
+    "require": {
+        "rapidwebltd/rw-file-cache": "^1.1",
+        "psr/cache": "^1.0"
+    },
+    "require-dev": {
+        "cache/integration-tests": "^0.16.0",
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "rapidweb\\RWFileCachePSR6\\": "src/"
+        }
+    }
+}
