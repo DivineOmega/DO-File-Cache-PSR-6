@@ -38,6 +38,12 @@ class CacheItem implements CacheItemInterface
 
     public function isHit()
     {
+        if ($this->isDeferred) {
+            if ($this->expires !== 0 && $this->expires <= time()) {
+                return false;
+            }
+        }
+
         return $this->value !== false;
     }
 
@@ -53,11 +59,19 @@ class CacheItem implements CacheItemInterface
 
     public function expiresAt($expiration)
     {
+        if ($expiration==null) {
+            $this->expires = 0;
+        } else {
+            $this->expires = $expiration->getTimestamp();
+        }
         return $this;
     }
 
     public function expiresAfter($time)
     {
+        if (is_integer($time)) {
+            $this->expires = time()+$time;
+        }
         return $this;
     }
 

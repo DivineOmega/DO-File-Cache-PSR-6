@@ -61,6 +61,8 @@ class CacheItemPool implements CacheItemPoolInterface
 
     public function hasItem($key)
     {
+        $this->sanityCheckKey($key);
+
         return $this->getItem($key)->isHit();
     }
 
@@ -114,5 +116,10 @@ class CacheItemPool implements CacheItemPoolInterface
         }
         $this->deferredItems = [];
         return true;
+    }
+
+    public function __destruct()
+    {
+        $this->commit();
     }
 }
