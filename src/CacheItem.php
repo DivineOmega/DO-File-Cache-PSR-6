@@ -10,6 +10,7 @@ class CacheItem implements CacheItemInterface
     private $value;
     private $expires = 0;
     public $isDeferred = false;
+    public $deferredValue;
 
     public function __construct($key, $value)
     {
@@ -50,10 +51,20 @@ class CacheItem implements CacheItemInterface
     public function set($value)
     {
         if ($this->isDeferred) {
+            $this->deferredValue = $value;
             return;
         }
 
         $this->value = $value;
+        return $this;
+    }
+
+    public function prepareForSaveDeferred()
+    {
+        $this->isDeferred = true;
+        if ($this->deferredValue) {
+            $this->value = $this->deferredValue;
+        }
         return $this;
     }
 

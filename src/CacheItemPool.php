@@ -104,8 +104,7 @@ class CacheItemPool implements CacheItemPoolInterface
 
     public function saveDeferred(CacheItemInterface $item)
     {
-        $item->isDeferred = true;
-        $this->deferredItems[$item->getKey()] = $item;
+        $this->deferredItems[$item->getKey()] = $item->prepareForSaveDeferred();
         return true;
     }
 
