@@ -39,10 +39,8 @@ class CacheItem implements CacheItemInterface
 
     public function isHit()
     {
-        if ($this->isDeferred) {
-            if ($this->expires !== 0 && $this->expires <= time()) {
-                return false;
-            }
+        if ($this->expires !== 0 && $this->expires <= time()) {
+            return false;
         }
 
         return $this->value !== false;
