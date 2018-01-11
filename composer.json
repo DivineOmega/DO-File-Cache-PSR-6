@@ -10,7 +10,7 @@
     ],
     "license": "LGPL3",
     "require": {
-        "rapidwebltd/rw-file-cache": "^1.2",
+        "rapidwebltd/rw-file-cache": "^1.2.2",
         "psr/cache": "^1.0"
     },
     "require-dev": {
