@@ -8,7 +8,7 @@
             "email": "jordan.hall@rapidweb.biz"
         }
     ],
-    "license": "LGPL3",
+    "license": "LGPL-3.0-only",
     "require": {
         "rapidwebltd/rw-file-cache": "^1.2.3",
         "psr/cache": "^1.0"
