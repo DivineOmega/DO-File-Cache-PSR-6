@@ -1,24 +1,24 @@
 <?php
 
-namespace rapidweb\RWFileCachePSR6;
+namespace DivineOmega\DOFileCachePSR6;
 
 use Psr\Cache\CacheItemPoolInterface;
-use rapidweb\RWFileCache\RWFileCache;
+use DivineOmega\DOFileCache\DOFileCache;
 use Psr\Cache\CacheItemInterface;
 
 class CacheItemPool implements CacheItemPoolInterface
 {
-    private $rwFileCache;
+    private $doFileCache;
     private $deferredItems = [];
 
     public function __construct()
     {
-        $this->rwFileCache = new RWFileCache();
+        $this->doFileCache = new DOFileCache();
     }
 
     public function changeConfig(array $config)
     {
-        return $this->rwFileCache->changeConfig($config);
+        return $this->doFileCache->changeConfig($config);
     }
 
     private function sanityCheckKey($key) 
@@ -45,7 +45,7 @@ class CacheItemPool implements CacheItemPoolInterface
             return $this->deferredItems[$key];
         }
 
-        return new CacheItem($key, $this->rwFileCache->get($key));
+        return new CacheItem($key, $this->doFileCache->get($key));
     }
 
     public function getItems(array $keys = [])
@@ -69,7 +69,7 @@ class CacheItemPool implements CacheItemPoolInterface
     public function clear()
     {
         $this->deferredItems = [];
-        return $this->rwFileCache->flush();
+        return $this->doFileCache->flush();
     }
 
     public function deleteItem($key)
@@ -81,7 +81,7 @@ class CacheItemPool implements CacheItemPoolInterface
             return true;
         }
 
-        $this->rwFileCache->delete($key);
+        $this->doFileCache->delete($key);
 
         return true;
     }
@@ -99,7 +99,7 @@ class CacheItemPool implements CacheItemPoolInterface
 
     public function save(CacheItemInterface $item)
     {
-        return $this->rwFileCache->set($item->getKey(), $item->get(), $item->getExpires());
+        return $this->doFileCache->set($item->getKey(), $item->get(), $item->getExpires());
     }
 
     public function saveDeferred(CacheItemInterface $item)

@@ -1,6 +1,6 @@
 <?php
 
-namespace rapidweb\RWFileCachePSR6;
+namespace DivineOmega\DOFileCachePSR6;
 
 use Psr\Cache\CacheItemInterface;
 
