@@ -1,6 +1,6 @@
 {
     "name": "divineomega/do-file-cache-psr-6",
-    "description": "PSR-6 adapter for RW File Cache",
+    "description": "PSR-6 adapter for DO File Cache",
     "type": "library",
     "authors": [
         {
